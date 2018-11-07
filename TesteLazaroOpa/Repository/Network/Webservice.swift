@@ -14,31 +14,6 @@ let sharedWebService = WebService()
 
 class WebService: NSObject {
     
-    fileprivate override init(){}
-    
-    enum Path {
-        
-        case getProducts
-        case postProduct
-        
-        var path: String {
-            
-            switch self {
-            case .getProducts:
-                return returnUrl(path: "get")
-            case .postProduct:
-                return returnUrl(path: "post")
-            }
-        }
-        
-        private func returnUrl(path: String) -> String {
-            if let url = Bundle.main.object(forInfoDictionaryKey: "ServerURL") as? String {
-                return url + path
-            }
-            return ""
-        }
-    }
-    
     func createGeneriErrorForResponse() -> Error {
         let error = NSError(domain: "network", code: -1, userInfo: [NSLocalizedDescriptionKey: "Não foi possível completar operação, tente novamente mais tarde"])
         return error
